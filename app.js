@@ -30,16 +30,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/barajas', barajasRouter);
-app.use('/juego7ymedio', juego7yMedioRouter); 
+app.use('/juego7ymedio', juego7yMedioRouter); // Usa la ruta del juego 7 y Medio en '/juego7ymedio'
 
-
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-
+// error handler
 app.use(function(err, req, res, next) {
-
+  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 

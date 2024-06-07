@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Carta al Azar
+  .card
+    img(src=`/images/${palo}/${carta}.png`, alt=`${numero} de ${palo}`, style='width: 100px;')
+  a(href='/baraja')
+    button(type='button') Volver a la Baraja
