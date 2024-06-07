@@ -1,0 +1,46 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{title}
+    link(rel="stylesheet", href="/stylesheets/barajas.css")
+  body
+    h1 Baraja Española
+
+    #ordenar-por
+      h2 Ordenar por:
+      form(action="/barajas/ordenar", method="post")
+        select(name="ordenarpor")
+          option(value="palo-valor", selected) Palo y valor
+          option(value="valor") Solo valor
+        button.ordenar(type="submit") Ordenar
+
+    .stack
+      if cartasExtraidas && cartasExtraidas.length > 0
+        each cartaExtraida, index in cartasExtraidas
+          .card.extraida(style=`background-image: url(${cartaExtraida.carta.rutaImagen}); z-index: ${index};`)
+      else
+        img(src="/Trasera/Trasera.png", alt="Parte trasera de la carta", class="trasera")
+
+    #container
+      each carta in cartas
+        .card(style=`background-image: url(${carta.rutaImagen})`)
+
+    .buttons-container
+      form(action="/barajas/barajar", method="post")
+        button(type="submit") Barajar
+      // Formulario para seleccionar el tipo de extracción
+      form(action="/barajas/extraer", method="post")
+        select(name="tipoExtraccion")
+          option(value="aleatoria") Extraer carta al azar
+          option(value="primera") Extraer primera carta
+        button(type="submit") Extraer
+      form(action="/barajas/devolver", method="post")
+        button(type="submit") Devolver
+      form(action="/barajas/reset", method="post")
+        button(type="submit") Reset
+      form(action="/barajas/salir", method="post")
+        button(type="submit") Salir
+      // Agrega el nuevo botón para ir al juego
+      a(href="/juego7yMedio", class="button-link") Ir al Juego

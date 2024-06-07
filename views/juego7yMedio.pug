@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Jugar al 7 y Medio
+  body
+    h1 Jugar al 7 y Medio
+    p Cartas del jugador:
+    ul
+      each carta in juego.cartasJugador
+        li
+          img(src=carta.rutaImagen, alt=`${carta.numero} de ${carta.palo}`)
+
+    p Total del jugador: #{juego.totalJugador}
+
+    if mensaje
+      p= mensaje
+
+    if juego.totalJugador === 7.5
+      p ¡Has ganado!
+
+    form(action="/juego7ymedio/pedir" method="post")
+      button(type="submit", disabled=(mensaje || juego.totalJugador >= 7.5)) Pedir Carta
+
+    form(action="/juego7ymedio/reiniciar" method="post")
+      button(type="submit") Reiniciar Juego
+
+    form(action="/barajas" method="get")
+      button(type="submit") Ir a Barajas
