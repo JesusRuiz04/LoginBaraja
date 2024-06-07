@@ -1,4 +1,4 @@
-const Baraja = require('./Baraja'); 
+const Baraja = require('./baraja'); 
 
 class Juego7yMedio {
     constructor() {
